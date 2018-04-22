@@ -3,3 +3,11 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.menu-logo {
+  margin-left: 10px;
+}
+
+.main-container {
+  padding-top: 15px ;
+}
