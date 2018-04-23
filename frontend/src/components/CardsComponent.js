@@ -1,4 +1,5 @@
 import React from 'react';
+import toastr from 'toastr'
 import {CardComponent} from "./CardComponent";
 import {Card} from "../model/Card";
 
@@ -36,6 +37,9 @@ export class CardsComponent extends React.Component {
                     cardData.push(new Card(c.id, c.title, c.description, c.img, c.link))
                 });
                 this.setState({cardData: cardData});
+                this.props.blockUIStop();
+            })
+            .catch(error => {
                 this.props.blockUIStop();
             });
     }

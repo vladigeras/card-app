@@ -1,6 +1,8 @@
 import './index.css';
 import '../node_modules/materialize-css/dist/css/materialize.min.css';
 import '../node_modules/materialize-css/dist/js/materialize.min.js';
+import '../node_modules/toastr/build/toastr.css'
+import '../node_modules/toastr/build/toastr.min.js'
 import 'react-block-ui/style.css';
 
 import React from 'react';
@@ -15,7 +17,6 @@ export class App extends React.Component {
 
     constructor(props) {
         super(props);
-
         this.blockUIStart = this.blockUIStart.bind(this);
         this.blockUIStop = this.blockUIStop.bind(this);
 
