@@ -16,7 +16,9 @@ export class App extends React.Component {
     constructor(props) {
         super(props);
 
-        this.toggleBlocking = this.toggleBlocking.bind(this);
+        this.blockUIStart = this.blockUIStart.bind(this);
+        this.blockUIStop = this.blockUIStop.bind(this);
+
         this.state = {
             blocking: false
         };
@@ -29,23 +31,23 @@ export class App extends React.Component {
                     <MenuComponent/>
 
                     <div className="container main-container">
-                        <CardsComponent/>
+                        <CardsComponent blockUIStart={this.blockUIStart} blockUIStop={this.blockUIStop}/>
                     </div>
 
                     <FooterComponent/>
                 </BlockUi>
-
-                <button onClick={this.toggleBlocking} color="primary">Toggle Block</button>
-
             </div>
         );
     }
 
-    toggleBlocking() {
+    blockUIStart() {
+        if (!this.state.blocking) {
+            this.setState({blocking: true});
+        }
+    }
+    blockUIStop() {
         if (this.state.blocking) {
             setTimeout(() => this.setState({blocking: false}), 1800)
-        } else {
-            this.setState({blocking: true});
         }
     }
 }
