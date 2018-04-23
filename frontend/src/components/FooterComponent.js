@@ -21,13 +21,13 @@ export let FooterComponent = () => {
                         <h5 className="white-text">Contact me</h5>
                         <div className="row">
                             <a href="https://github.com/gerasimovv88">
-                                <img alt="GitHub" className="col s4 m4 l4" src={window.location.origin + "/img/github.png"}/>
+                                <img alt="GitHub" className="col s3 m3 l3" src={window.location.origin + "/img/github.png"}/>
                             </a>
                             <a href="mailto:gerasimov.v88@gmail.com">
-                                <img alt="Gmail" className="col s4 m4 l4" src={window.location.origin + "/img/gmail.jpg"}/>
+                                <img alt="Gmail" className="col s3 m3 l3" src={window.location.origin + "/img/gmail.jpg"}/>
                             </a>
                             <a href="tg://resolve?domain=vladi_geras">
-                                <img alt="Telegram" className="col s4 m4 l4" src={window.location.origin + "/img/telegram.jpg"}/>
+                                <img alt="Telegram" className="col s3 m3 l3" src={window.location.origin + "/img/telegram.png"}/>
                             </a>
                         </div>
                     </div>
