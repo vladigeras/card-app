@@ -1,15 +1,14 @@
 import React from 'react';
 import toastr from 'toastr'
-import {CardComponent} from "./CardComponent";
 import {Card} from "../model/Card";
 
-export class CardsComponent extends React.Component {
+export class TableComponent extends React.Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
-            cardData: [],
+            tableData: [],
             error: null
         };
 
@@ -19,10 +18,30 @@ export class CardsComponent extends React.Component {
     render() {
         return (
             <div className="row">
-                {
-                    this.state.cardData.map((c) => <CardComponent key={c.id} title={c.title} description={c.description}
-                                                       img={c.img}/>)
-                }
+                <table className="highlight responsive-table">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Picture</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {
+                        this.state.tableData.map(d =>
+                            <tr>
+                                <td>{d.id}</td>
+                                <td><img alt={d.title} src={"data:image/jpg;base64, " + d.img}/></td>
+                                <td>{d.title}</td>
+                                <td>{d.description}</td>
+                            </tr>
+                        )
+                    }
+                    </tbody>
+                </table>
+
                 <h4>{this.state.error}</h4>
             </div>
         );
@@ -38,7 +57,7 @@ export class CardsComponent extends React.Component {
                 cards.forEach(c => {
                     cardData.push(new Card(c.id, c.title, c.description, c.img))
                 });
-                this.setState({cardData: cardData});
+                this.setState({tableData: cardData});
                 this.props.blockUIStop();
             })
             .catch(error => {

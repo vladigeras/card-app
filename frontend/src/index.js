@@ -12,6 +12,7 @@ import {CardsComponent} from "./components/CardsComponent";
 import {MenuComponent} from "./components/MenuComponent";
 import {FooterComponent} from "./components/FooterComponent";
 import BlockUi from 'react-block-ui';
+import {TableComponent} from "./components/TableComponent";
 
 export class App extends React.Component {
 
@@ -33,6 +34,7 @@ export class App extends React.Component {
 
                     <div className="container main-container">
                         <CardsComponent blockUIStart={this.blockUIStart} blockUIStop={this.blockUIStop}/>
+                        <TableComponent blockUIStart={this.blockUIStart} blockUIStop={this.blockUIStop}/>
                     </div>
 
                     <FooterComponent/>

@@ -6,8 +6,6 @@ let port = process.env.PORT || 5050;
 let cards = require('./model/init');
 
 app.get('/api/cards', (request, response) => {
-
-    console.log(cards);
     response.setHeader('Content-Type', 'application/json');
     response.send({items: cards});
 });

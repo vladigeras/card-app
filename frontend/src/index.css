@@ -19,3 +19,7 @@ body {
 .card .card-image img {
   height: 150px;
 }
+
+.row table tbody tr td img {
+  width: 110px;
+}
