@@ -23,3 +23,11 @@ body {
 .row table tbody tr td img {
   width: 110px;
 }
+
+.active-route-link {
+  background-color: brown;
+}
+
+.non-active-route-link {
+  background-color: inherit;
+}

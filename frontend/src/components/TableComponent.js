@@ -31,7 +31,7 @@ export class TableComponent extends React.Component {
                     <tbody>
                     {
                         this.state.tableData.map(d =>
-                            <tr>
+                            <tr key={d.id}>
                                 <td>{d.id}</td>
                                 <td><img alt={d.title} src={"data:image/jpg;base64, " + d.img}/></td>
                                 <td>{d.title}</td>
