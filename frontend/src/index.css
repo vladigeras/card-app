@@ -11,3 +11,11 @@ body {
 .main-container {
   padding-top: 15px ;
 }
+
+.card .card-content {
+  height: 100px;
+}
+
+.card .card-image img {
+  height: 150px;
+}

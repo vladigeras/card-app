@@ -9,7 +9,8 @@ export class CardsComponent extends React.Component {
         super(props);
 
         this.state = {
-            cardData: []
+            cardData: [],
+            error: null
         };
 
         this.getCards();
@@ -22,6 +23,7 @@ export class CardsComponent extends React.Component {
                     this.state.cardData.map((c) => <CardComponent key={c.id} title={c.title} description={c.description}
                                                        img={c.img} link={c.link}/>)
                 }
+                <h4>{this.state.error}</h4>
             </div>
         );
     }
@@ -40,6 +42,8 @@ export class CardsComponent extends React.Component {
                 this.props.blockUIStop();
             })
             .catch(error => {
+                this.setState({error: "Произошла ошибка при получении данных"});
+                console.error(error);
                 this.props.blockUIStop();
             });
     }

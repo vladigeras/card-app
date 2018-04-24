@@ -1,9 +1,10 @@
-module.exports =  class Card {
-    constructor(id, title, description, img, link) {
+class Card {
+    constructor(id, title, description, img) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.img = img;
-        this.link = link;
     }
 }
+
+module.exports = Card;
