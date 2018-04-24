@@ -1,6 +1,7 @@
 import './index.css';
-import '../node_modules/materialize-css/dist/css/materialize.min.css';
-import '../node_modules/materialize-css/dist/js/materialize.min.js';
+import '../node_modules/jquery/dist/jquery.js'
+import '../node_modules/materialize-css/dist/css/materialize.css';
+import '../node_modules/materialize-css/dist/js/materialize.js';
 import '../node_modules/toastr/build/toastr.css'
 import '../node_modules/toastr/build/toastr.min.js'
 import 'react-block-ui/style.css';

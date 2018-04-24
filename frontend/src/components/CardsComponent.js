@@ -1,5 +1,4 @@
 import React from 'react';
-import toastr from 'toastr'
 import {CardComponent} from "./CardComponent";
 import {Card} from "../model/Card";
 
@@ -20,8 +19,8 @@ export class CardsComponent extends React.Component {
         return (
             <div className="row">
                 {
-                    this.state.cardData.map((c) => <CardComponent key={c.id} title={c.title} description={c.description}
-                                                       img={c.img}/>)
+                    this.state.cardData.map((c) => <CardComponent key={c.id} id={c.id} title={c.title} description={c.description}
+                                                       img={c.img} blockUIStart={this.props.blockUIStart} blockUIStop={this.props.blockUIStop}/>)
                 }
                 <h4>{this.state.error}</h4>
             </div>

@@ -19,5 +19,4 @@ module.exports = cards;
 function readBase64ImgByPath(path) {
     let bitmap = fs.readFileSync(path);
     return new Buffer(bitmap).toString('base64');
-
 }

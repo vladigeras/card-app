@@ -1,12 +1,13 @@
 import React from 'react';
-import toastr from 'toastr'
 import {Card} from "../model/Card";
+import * as Helper from "./Helper";
 
 export class TableComponent extends React.Component {
 
     constructor(props) {
         super(props);
 
+        this.openCardDescription = this.openCardDescription.bind(this);
         this.state = {
             tableData: [],
             error: null
@@ -31,9 +32,9 @@ export class TableComponent extends React.Component {
                     <tbody>
                     {
                         this.state.tableData.map(d =>
-                            <tr key={d.id}>
+                            <tr onClick={() => this.openCardDescription(d.id)} key={d.id}>
                                 <td>{d.id}</td>
-                                <td><img alt={d.title} src={"data:image/jpg;base64, " + d.img}/></td>
+                                <td><img alt={d.title} className="circle" src={"data:image/jpg;base64, " + d.img}/></td>
                                 <td>{d.title}</td>
                                 <td>{d.description}</td>
                             </tr>
@@ -66,5 +67,20 @@ export class TableComponent extends React.Component {
                 this.props.blockUIStop();
             });
     }
+
+    openCardDescription(id) {
+        this.props.blockUIStart();
+        fetch("/api/card/" + id)
+            .then(response => response.json())
+            .then(card => {
+                this.props.blockUIStop();
+                Helper.openCardModal(card);
+            })
+            .catch(error => {
+                console.error(error);
+                this.props.blockUIStop();
+            });
+    }
 }
+
 

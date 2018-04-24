@@ -3,6 +3,7 @@ import {MenuComponent} from "../components/MenuComponent";
 import BlockUi from "react-block-ui";
 import {FooterComponent} from "../components/FooterComponent";
 import {TableComponent} from "../components/TableComponent";
+import {ReadCardModalComponent} from "../components/ReadCardModalComponent";
 
 
 export class TablePage extends React.Component {
@@ -22,12 +23,15 @@ export class TablePage extends React.Component {
                 <BlockUi tag="div" blocking={this.state.blocking} message="Please wait" keepInView="true">
                     <MenuComponent/>
 
+
                     <div className="container main-container">
                         <TableComponent blockUIStart={this.blockUIStart} blockUIStop={this.blockUIStop}/>
                     </div>
 
                     <FooterComponent/>
                 </BlockUi>
+
+                <ReadCardModalComponent/>
             </div>
         )
     }
@@ -39,7 +43,7 @@ export class TablePage extends React.Component {
     }
     blockUIStop() {
         if (this.state.blocking) {
-            setTimeout(() => this.setState({blocking: false}), 1800)
+            setTimeout(() => this.setState({blocking: false}), 1000)
         }
     }
 }

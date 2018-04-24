@@ -31,3 +31,7 @@ body {
 .non-active-route-link {
   background-color: inherit;
 }
+
+.card .card-action .open-card-link {
+  cursor: pointer;
+}

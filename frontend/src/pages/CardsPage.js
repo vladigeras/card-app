@@ -3,6 +3,7 @@ import {MenuComponent} from "../components/MenuComponent";
 import BlockUi from "react-block-ui";
 import {CardsComponent} from "../components/CardsComponent";
 import {FooterComponent} from "../components/FooterComponent";
+import {ReadCardModalComponent} from "../components/ReadCardModalComponent";
 
 
 export class CardsPage extends React.Component {
@@ -29,6 +30,8 @@ export class CardsPage extends React.Component {
 
                     <FooterComponent/>
                 </BlockUi>
+
+                <ReadCardModalComponent/>
             </div>
         )
     }
@@ -40,7 +43,7 @@ export class CardsPage extends React.Component {
     }
     blockUIStop() {
         if (this.state.blocking) {
-            setTimeout(() => this.setState({blocking: false}), 1800)
+            setTimeout(() => this.setState({blocking: false}), 1000)
         }
     }
 }
