@@ -1,6 +1,7 @@
 import React from 'react';
 import {Card} from "../model/Card";
-import * as Helper from "./Helper";
+import {ReadCardModalComponent} from "./ReadCardModalComponent";
+import $ from "jquery";
 
 export class TableComponent extends React.Component {
 
@@ -10,6 +11,7 @@ export class TableComponent extends React.Component {
         this.openCardDescription = this.openCardDescription.bind(this);
         this.state = {
             tableData: [],
+            activeCard: null,
             error: null
         };
 
@@ -31,12 +33,14 @@ export class TableComponent extends React.Component {
 
                     <tbody>
                     {
-                        this.state.tableData.map(d =>
-                            <tr onClick={() => this.openCardDescription(d.id)} key={d.id}>
-                                <td>{d.id}</td>
-                                <td><img alt={d.title} className="circle" src={"data:image/jpg;base64, " + d.img}/></td>
-                                <td>{d.title}</td>
-                                <td>{d.description}</td>
+                        this.state.tableData.map((elem, i) =>
+                            <tr key={i} onClick={() => this.openCardDescription(elem.id)}>
+                                <td>{elem.id}</td>
+                                <td><img alt={elem.title} className="circle"
+                                         src={"data:image/jpg;base64, " + elem.img}/>
+                                </td>
+                                <td>{elem.title}</td>
+                                <td>{elem.description}</td>
                             </tr>
                         )
                     }
@@ -44,12 +48,13 @@ export class TableComponent extends React.Component {
                 </table>
 
                 <h4>{this.state.error}</h4>
+
+                <ReadCardModalComponent>{this.state.activeCard}</ReadCardModalComponent>
             </div>
         );
     }
 
     getCards() {
-        this.props.blockUIStart();
         fetch("/api/cards")
             .then(response => response.json())
             .then(data => data.items)
@@ -59,26 +64,22 @@ export class TableComponent extends React.Component {
                     cardData.push(new Card(c.id, c.title, c.description, c.img))
                 });
                 this.setState({tableData: cardData});
-                this.props.blockUIStop();
             })
             .catch(error => {
                 this.setState({error: "Произошла ошибка при получении данных"});
                 console.error(error);
-                this.props.blockUIStop();
             });
     }
 
     openCardDescription(id) {
-        this.props.blockUIStart();
         fetch("/api/card/" + id)
             .then(response => response.json())
             .then(card => {
-                this.props.blockUIStop();
-                Helper.openCardModal(card);
+                this.setState({activeCard: card});
+                $("#card-modal").modal('open')      //open the modal
             })
             .catch(error => {
                 console.error(error);
-                this.props.blockUIStop();
             });
     }
 }

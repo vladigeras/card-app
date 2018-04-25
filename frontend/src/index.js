@@ -13,8 +13,8 @@ import {BrowserRouter as Router, Route} from 'react-router-dom'
 import {CardsPage} from "./pages/CardsPage";
 import {TablePage} from "./pages/TablePage";
 
-
 export class App extends React.Component {
+
     render() {
         return (
             <Router>

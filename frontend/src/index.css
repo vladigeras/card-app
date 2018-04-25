@@ -35,3 +35,7 @@ body {
 .card .card-action .open-card-link {
   cursor: pointer;
 }
+
+#card-modal .modal-content div div img {
+  width: 340px;
+}

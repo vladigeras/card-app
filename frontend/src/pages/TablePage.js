@@ -30,8 +30,6 @@ export class TablePage extends React.Component {
 
                     <FooterComponent/>
                 </BlockUi>
-
-                <ReadCardModalComponent/>
             </div>
         )
     }

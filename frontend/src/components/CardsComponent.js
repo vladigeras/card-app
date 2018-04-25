@@ -1,6 +1,8 @@
 import React from 'react';
 import {CardComponent} from "./CardComponent";
 import {Card} from "../model/Card";
+import {ReadCardModalComponent} from "./ReadCardModalComponent";
+import $ from "jquery";
 
 export class CardsComponent extends React.Component {
 
@@ -9,6 +11,7 @@ export class CardsComponent extends React.Component {
 
         this.state = {
             cardData: [],
+            activeCard: null,
             error: null
         };
 
@@ -19,16 +22,18 @@ export class CardsComponent extends React.Component {
         return (
             <div className="row">
                 {
-                    this.state.cardData.map((c) => <CardComponent key={c.id} id={c.id} title={c.title} description={c.description}
-                                                       img={c.img} blockUIStart={this.props.blockUIStart} blockUIStop={this.props.blockUIStop}/>)
+                    this.state.cardData.map((card, i) => {
+                        return (<CardComponent key={i} openCard={() => this.openCard(card.id)}>{card}</CardComponent>)
+                    })
                 }
                 <h4>{this.state.error}</h4>
+
+                <ReadCardModalComponent>{this.state.activeCard}</ReadCardModalComponent>
             </div>
         );
     }
 
     getCards() {
-        this.props.blockUIStart();
         fetch("/api/cards")
             .then(response => response.json())
             .then(data => data.items)
@@ -38,13 +43,24 @@ export class CardsComponent extends React.Component {
                     cardData.push(new Card(c.id, c.title, c.description, c.img))
                 });
                 this.setState({cardData: cardData});
-                this.props.blockUIStop();
             })
             .catch(error => {
                 this.setState({error: "Произошла ошибка при получении данных"});
                 console.error(error);
-                this.props.blockUIStop();
             });
     }
+
+    openCard(id) {
+        fetch("/api/card/" + id)
+            .then(response => response.json())
+            .then(card => {
+                this.setState({activeCard: card});
+
+                $("#card-modal").modal('open');
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    };
 }
 
