@@ -1,5 +1,5 @@
 ## Description
-The example project with Express NodeJS and React App together.
+An example project with Express NodeJS and React App together.
 
 ## Features
 1. Getting information about JetBrains's tools (IDE) as **_cards_** view
